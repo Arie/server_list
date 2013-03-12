@@ -1,0 +1,16 @@
+.navbar.navbar-inverse
+  .navbar-inner
+    .container
+      %ul.nav
+        %li= link_to("ServerList",   root_path, :class => 'brand')
+        %li= link_to("ETF2L Thread", "http://etf2l.org/forum/general/topic-9853/page-11/?recent=437664#post-437664", :target => "_blank")
+      .pull-right
+        .account
+          - if current_user
+            Hello
+            = link_to current_user.nickname, edit_users_path
+            |
+            = link_to "logout", users_logout_path, :method => :delete
+          - else
+            = link_to '/users/auth/steam' do
+              = image_tag 'sits_small.png', :alt => "Sign in with Steam"

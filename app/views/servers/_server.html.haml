@@ -1,0 +1,21 @@
+%tr[server]
+  %td
+    %div{:class => "flags-#{server.location_flag}", :title => server.location_name}
+    = server.server_name
+  %td
+    = server.number_of_players
+    \/
+    = server.max_players
+  %td= server.map_name
+  %td.actions
+    %span
+      = link_to  server.server_connect_url, :class => 'btn btn-small btn-warning' do
+        Join game
+        %i.icon-play
+      - if current_user && current_user.admin?
+        = link_to edit_server_path(server),   :class => 'btn btn-small btn-info' do
+          Edit
+          %i.icon-edit
+        = link_to server_path(server),        :class => 'btn btn-small btn-danger',  :title => 'Delete',     :method => :delete, :data => { :confirm => "Are you sure you want to delete this server?"} do
+          Delete
+          %i.icon-remove

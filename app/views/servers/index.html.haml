@@ -1,0 +1,28 @@
+%h1
+  Servers
+  - if current_user && current_user.admin?
+    = link_to new_server_path, :class => 'btn btn-small btn-success' do
+      Add
+      %i.icon-plus-sign
+
+%table.table.table-condensed
+  %thead
+    %tr
+      %th &nbsp;
+      %th Players
+      %th Map
+      %th Actions
+  - @categories.each do |category|
+    - servers = category.servers.ordered
+    - if servers.any?
+      %tbody
+        %tr
+          %td{:colspan => 4}
+            %h5= category.name
+        - servers.each do |server|
+          = render "server", :server => server
+
+
+.row
+  .span12
+    = render "shared/disqus"

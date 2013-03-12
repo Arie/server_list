@@ -1,0 +1,11 @@
+= simple_form_for(@server, :html => { :class => 'form-horizontal' }) do |f|
+  = f.input :name,                :as => :string
+  = f.input :host_and_port,       :as => :string, :label => "ip:port"
+  .controls
+    .control-group.error= f.full_error :host
+  = f.association  :location,   :collection => Location.ordered
+  = f.association :categories,  :collection => Category.ordered
+  = f.association :properties,  :collection => Property.ordered
+
+  %button.btn{:type => :submit}
+    Save
