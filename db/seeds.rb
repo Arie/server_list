@@ -34,7 +34,7 @@ unless Location.all.any?
                 {:name => "Russia",         :flag => "ru"},
                 {:name => "Scotland",       :flag => "scotland"},
                 {:name => "Spain",          :flag => "es"},
-                {:name => "UK",             :flag => "uk"}
+                {:name => "UK",             :flag => "uk"},
                 {:name => "USA",            :flag => "us"}
               ]
   locations.each do |location|
