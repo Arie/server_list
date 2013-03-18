@@ -7,7 +7,7 @@ set :use_sudo,          false
 set :main_server,       "fakkelbrigade.eu"
 set :keep_releases,     10
 set :deploy_via,        :copy
-set :repository,        "https://github.com/Arie/server_list.git"
+set :repository,        "git@github.com:Arie/server_list.git"
 set :branch,            'master'
 set :scm,               :git
 set :scm,               :none
