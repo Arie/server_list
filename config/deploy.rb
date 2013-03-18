@@ -10,7 +10,6 @@ set :deploy_via,        :copy
 set :repository,        "git@github.com:Arie/server_list.git"
 set :branch,            'master'
 set :scm,               :git
-set :scm,               :none
 set :copy_compression,  :gzip
 set :use_sudo,          false
 set :user,              'tf2'
