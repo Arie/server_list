@@ -39,6 +39,10 @@ class Server < ActiveRecord::Base
     end
   end
 
+  def self.for_feed
+    where(:category => Category.for_feed).order('last_number_of_players DESC')
+  end
+
   private
 
   def steam_connect_url(host, port)

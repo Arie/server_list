@@ -16,7 +16,11 @@ ServerList::Application.routes.draw do
     end
   end
 
-  resources :servers
+  resources :servers do
+    collection do
+      get :feed
+    end
+  end
 
   resources :users do
     collection do

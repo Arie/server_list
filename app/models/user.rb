@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    true
+    created_at < 1.week.ago
   end
 
   def steam_profile_url

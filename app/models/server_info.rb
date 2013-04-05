@@ -9,15 +9,21 @@ class ServerInfo
 
   def server_name
     server_name = status.fetch(:server_name,        'unknown')
-    ActiveSupport::Multibyte::Chars.new(server_name).tidy_bytes
+    name = ActiveSupport::Multibyte::Chars.new(server_name).tidy_bytes
+    server.update_attribute(:last_server_name, name)
+    name
   end
 
   def number_of_players
-    status.fetch(:number_of_players,  '0')
+    number_of_players = status.fetch(:number_of_players,  '0')
+    server.update_attribute(:last_number_of_players, number_of_players)
+    number_of_players
   end
 
   def max_players
-    status.fetch(:max_players,        '0')
+    max_players = status.fetch(:max_players,        '0')
+    server.update_attribute(:last_max_players, max_players)
+    max_players
   end
 
   def map_name
