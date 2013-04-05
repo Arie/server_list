@@ -44,6 +44,10 @@ class Server < ActiveRecord::Base
       order('last_number_of_players DESC').readonly(false)
   end
 
+  def updated_at
+    self[:updated_at] + last_number_of_players.to_i.seconds
+  end
+
   private
 
   def steam_connect_url(host, port)

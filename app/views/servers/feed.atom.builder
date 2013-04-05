@@ -10,7 +10,7 @@ atom_feed :language => 'en-US' do |feed|
       entry.content "#{server.categories.first.name}: #{server.last_server_name} (#{server.last_number_of_players}/#{server.last_max_players})"
 
       # the strftime is needed to work with Google Reader.
-      entry.updated((server.updated_at + server.last_number_of_players.to_i.seconds).strftime("%Y-%m-%dT%H:%M:%SZ"))
+      entry.updated(server.updated_at.strftime("%Y-%m-%dT%H:%M:%SZ"))
 
       entry.author do |author|
         author.name "Arie"
