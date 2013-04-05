@@ -1,7 +1,7 @@
 class Server < ActiveRecord::Base
   include OrderedByName
 
-  attr_accessible :name, :host_and_port, :host, :port, :category_ids, :property_ids, :location_id
+  attr_accessible :name, :host_and_port, :host, :port, :category_ids, :property_ids, :location_id, :last_server_name, :last_number_of_players, :last_max_players
 
   validates_presence_of :name, :host_and_port, :location_id
   validates_length_of :categories, :minimum => 1, :message => "need at least 1 category"
@@ -40,7 +40,8 @@ class Server < ActiveRecord::Base
   end
 
   def self.for_feed
-    where(:category => Category.for_feed).order('last_number_of_players DESC')
+    joins(:categories).where('categories.id IN (?)', Category.for_feed).
+      order('last_number_of_players DESC').readonly(false)
   end
 
   private

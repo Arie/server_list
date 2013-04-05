@@ -1,11 +1,15 @@
 class ServersController < ApplicationController
 
-  skip_before_filter :authenticate_user!, :only => [:index, :feed]
+  skip_before_filter :authenticate_user!, :only => [:index, :feed, :show]
   before_filter :require_admin, :only => [:new, :create, :edit, :update, :destroy]
   caches_action :feed, :cache_path => Proc.new {|c| c.request.url }, :expires_in => 1.minute
 
   def new
     @server ||= Server.new
+  end
+
+  def show
+    @server ||= find_server
   end
 
   def create
@@ -24,9 +28,9 @@ class ServersController < ApplicationController
   end
 
   def feed
-    load_server_info
     @title = "Server list"
-    @servers = Server.all
+    load_server_info(Server.for_feed)
+    @servers = Server.for_feed
 
     # this will be our Feed's update timestamp
     @updated = Time.now
@@ -66,7 +70,7 @@ class ServersController < ApplicationController
     @find_server ||= Server.find(params[:id].to_i)
   end
 
-  def load_server_info
+  def load_server_info(servers = Server.all)
     threads = []
     Server.all.each do |server|
       threads << Thread.new { server.status }
