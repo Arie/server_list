@@ -1,5 +1,4 @@
 class Server < ActiveRecord::Base
-  include OrderedByName
 
   attr_accessible :name, :host_and_port, :host, :port, :category_ids, :property_ids, :location_id, :last_server_name, :last_number_of_players, :last_max_players
 
@@ -39,9 +38,13 @@ class Server < ActiveRecord::Base
     end
   end
 
+  def self.ordered
+    order("servers.last_number_of_players DESC").order("servers.name")
+  end
+
   def self.for_feed
     joins(:categories).where('categories.id IN (?)', Category.for_feed).
-      order('last_number_of_players DESC').readonly(false)
+      ordered.readonly(false)
   end
 
   private
