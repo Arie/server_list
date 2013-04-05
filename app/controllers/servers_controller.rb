@@ -24,6 +24,7 @@ class ServersController < ApplicationController
   end
 
   def feed
+    load_server_info
     @title = "Server list"
     @servers = Server.all
 
