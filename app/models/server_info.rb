@@ -46,7 +46,7 @@ class ServerInfo
 
   def condenser(host, port)
     begin
-      SteamCondenser::SourceServer.new(@server.host, @server.port.to_i)
+      SteamCondenser::Servers::SourceServer.new(@server.host, @server.port.to_i)
     rescue SocketError
     end
   end

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', "~> 3.2.17"
 gem 'haml'
 gem 'mysql2'
 gem 'thin',             :require => false
@@ -9,7 +9,7 @@ gem 'omniauth-steam'
 gem 'devise'
 gem 'simple_form'
 gem 'rubyzip',          :require => false
-gem 'steam-condenser',  :git => 'git://github.com/Arie/steam-condenser-ruby.git'
+gem 'steam-condenser', :github => 'koraktor/steam-condenser-ruby'
 gem 'lograge'
 
 group :development do
