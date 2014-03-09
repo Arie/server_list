@@ -25,6 +25,10 @@ class ServersController < ApplicationController
   def index
     load_server_info
     @categories = Category.ordered
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render :json => Server.all.to_json }
+    end
   end
 
   def feed
