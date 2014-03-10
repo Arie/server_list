@@ -27,7 +27,7 @@ class ServersController < ApplicationController
     @categories = Category.ordered
     respond_to do |format|
       format.html { render :index }
-      format.json { render :json => Server.all.to_json }
+      format.json { render :json => Server.joins(:categories).all.to_json(:include => [ :categories, :location  ] ) }
     end
   end
 
